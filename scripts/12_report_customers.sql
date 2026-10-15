@@ -7,11 +7,14 @@ Purpose:      Create a customer report summarising customer demographics,
               spending, order activity, customer lifespan, and segmentation.
 ===============================================================================
 */
+IF OBJECT_ID('dbo.report_customers', 'V') IS NOT NULL
+    DROP VIEW dbo.report_customers;
+GO
 
-CREATE OR ALTER VIEW dbo.report_customers AS
-
+CREATE VIEW dbo.report_customers AS
+  
 WITH base_query AS (
-    /* 1) Base Query */
+    /* 1) Base Query: Retrieves core columns from tables */
     SELECT
         f.order_number,
         f.product_key,
