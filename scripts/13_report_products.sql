@@ -8,7 +8,11 @@ Purpose:      Create a product report summarising product sales, revenue,
 ===============================================================================
 */
 
-CREATE OR ALTER VIEW dbo.report_products AS
+IF OBJECT_ID('dbo.report_products', 'V') IS NOT NULL
+    DROP VIEW dbo.report_products;
+GO
+
+CREATE VIEW dbo.report_products AS
 
 WITH base_query AS (
     SELECT
